@@ -1,0 +1,10 @@
+mat-form-field,
+.example-full-width {
+  width: 100%;
+  max-width: 500px;
+  margin: 15px auto;
+  display: block;
+}
+.container {
+  text-align: center;
+}
