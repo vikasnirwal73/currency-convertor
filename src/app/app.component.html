@@ -1,24 +1,53 @@
-<div class="container">
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Enter amount" type="number" #val>
-      </mat-form-field>
-    <mat-form-field>
-        <mat-select placeholder="Choose Country for conversion" #con1>
-          <mat-option *ngFor="let con of arrData" [value]="con.code">
-            {{con.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-          <mat-select placeholder="Choose Country to conversion" #con2>
-            <mat-option *ngFor="let con of arrData" [value]="con.code">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Currency Converter</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="main-container my-4">
+
+  <div class="container">
+
+    <mat-card class="my-4">
+      <h3 *ngIf="clean" >Results will show here</h3>
+      <h4 class="capitalize" *ngIf="messageToShow" [innerHTML]="messageToShow"></h4>
+      <mat-spinner
+        *ngIf="loading"
+        [diameter]="50"
+        color="accent"
+      ></mat-spinner>
+    </mat-card>
+
+
+    <mat-divider></mat-divider>
+
+    <mat-card class="my-4">
+      <form [formGroup]="form" (submit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Enter amount" type="number" formControlName="amount">
+          <mat-error>You should enter some amount. Don't you think so ?</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Choose currency for conversion" formControlName="referenceCountry">
+            <mat-option *ngFor="let con of countriesData" [value]="con.code">
               {{con.name}}
             </mat-option>
           </mat-select>
+          <mat-error>How do I know what currency you want to convert ?. Aih!</mat-error>
         </mat-form-field>
-        <button (click)="onClick(val, con1, con2)" mat-raised-button color="primary">Convert</button>
-        <h1 style="margin: 15px 0;" *ngIf="convertedData">Converted value : {{ convertedData }}</h1>
-        <!-- <h2 style="margin: 15px 0;">{{ convertedData }}</h2> -->
+        <mat-form-field>
+          <mat-select placeholder="Choose currency to conversion" formControlName="targetCountry">
+            <mat-option *ngFor="let con of countriesData" [value]="con.code">
+              {{con.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error>How do I know in what currency you want to convert ?</mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary"><i class="material-icons">
+            import_export
+            </i>Convert</button>
+      </form>
+    </mat-card>
+
+
+  </div>
 </div>
-
-

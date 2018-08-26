@@ -2,3 +2,11 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.result-amount {
+  color: red;
+  display: block;
+}
+.capitalize {
+  text-transform: capitalize;
+}
